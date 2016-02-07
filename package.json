@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "pretest": "npm run build",
+    "test": "istanbul cover tape test/",
+    "build": "babel src -d lib",
     "build:watch": "babel src -d lib -w"
   },
   "author": "",
