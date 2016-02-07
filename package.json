@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "pretest": "npm run build",
+    "test": "istanbul cover tape test/",
+    "build": "babel src -d lib",
     "build:watch": "babel src -d lib -w"
   },
   "author": "",
@@ -14,6 +16,10 @@
     "hapi": "^13.0.0"
   },
   "devDependencies": {
-    "babel-preset-es2015": "^6.3.13"
+    "babel-cli": "^6.5.0",
+    "babel-preset-es2015": "^6.3.13",
+    "istanbul": "^0.4.2",
+    "nock": "^7.0.2",
+    "tape": "^4.4.0"
   }
 }

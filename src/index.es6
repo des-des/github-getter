@@ -1,34 +1,30 @@
-import { GHUser, GHRepo } from './GHGetter.js'
+import { gHUser, gHRepo } from './gHGetter.js'
 
-GHUser('des-des')({
-  getRepos: repos => Object.keys(repos).forEach(key => repos[key]({
-    getReadme: readme => readme({
-      getData: readmeData => {
-        console.log('readme!', readmeData );
-      }
+gHUser('des-des')({
+  getRepos: (err, repos) => Object.keys(repos).forEach(key => repos[key]({
+    getReadme: (err, readme) => readme({
+      getData: console.log
     })
   }))
 });
 
-GHUser('dwyl', true)({
-  getRepos: repos => {
-    // console.log(Object.keys(repos));
+gHUser('dwyl', true)({
+  getRepos: (err, repos) => {
     repos['adoro']({
-      getReadme: readme => readme({
+      getReadme: (err, readme) => readme({
         getData: console.log
       })
     })
   }
 });
 
-GHRepo('des-des/aibox')({
-  getFiles: files => {
+gHRepo('des-des/aibox')({
+  getFiles: (err, files) => {
     files['.babelrc']({
-      getData: console.log
+      getData: (err, fileData) => console.log(fileData)
     })
   },
-  getReadme: readme => readme({
+  getReadme: (err, readme) => readme({
     getData: console.log
   })
-  // console.log//console.log(new Buffer(readmeData.content, 'base64').toString())
 });
