@@ -66,7 +66,7 @@ test('retrieving commit then checking response fails correctly for tree', (t) =>
 test('retrieving commit then checking response fails correctly for tree', (t) => {
   var expected;
   var repoName = 'test-repo';
-  var sha = 'test-sha'
+  var sha = 'test-sha';
 
   nocks.nockCommitRequest(repoName, sha, 404);
 
