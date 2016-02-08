@@ -3,7 +3,7 @@ var nock = require('nock');
 
 var nocks = require('./nocks');
 
-var gHUser = require('../lib/gHGetter.js').gHUser;
+var gHUser = require('../src/gHGetter.js').gHUser;
 
 test('ghFile requests and recieves file data', (t) => {
   var repoName = 'test-repo';

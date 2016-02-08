@@ -3,7 +3,7 @@ var nock = require('nock');
 
 var nocks = require('./nocks');
 
-var gHRepo = require('../lib/gHGetter.js').gHRepo;
+var gHRepo = require('../src/gHGetter.js').gHRepo;
 
 test('retrieving commit then tree then file', (t) => {
   var expected;
