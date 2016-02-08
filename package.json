@@ -2,7 +2,7 @@
   "name": "github-getter",
   "version": "1.0.1",
   "description": "Quick and easy github file retrieval",
-  "main": "index.js",
+  "main": "lib/gHGetter.js",
   "keywords": [
     "Github",
     "CMS"
