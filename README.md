@@ -26,12 +26,31 @@ Break down interaction with github into users, repos and files.
  
 ### USAGE
 
- * call your `GHFile` object(s) with the following paramiter
- 
+
  ```javascript
- {
-  getData: fileDataString => /*Your code here!*/
- }
+import { gHUser, gHRepo } from 'github-getter.js';
+
+
+gHUser('dwyl', true)({
+  getRepos: (err, repos) => {
+    repos.adoro({ // my favorate dwyl repo ;)
+      getReadme: (err, readme) => readme({
+        getData: console.log
+      })
+    });
+  }
+});
+
+gHRepo('des-des/aibox')({
+  getFiles: (err, files) => {
+    files['.babelrc']({
+      getData: (err, fileData) => console.log(fileData)
+    });
+  },
+  getReadme: (err, readme) => readme({
+    getData: console.log
+  })
+});
  ```
  see src/index.es6 for an example!
  
