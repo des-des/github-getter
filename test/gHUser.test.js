@@ -18,7 +18,7 @@ test('ghFile requests and recieves file data', (t) => {
           t.equal(config.repoName, 'test-user-name/test-repo', 'corrent data received');
           t.end();
         }
-      })
+      });
     }
   });
 });
@@ -48,7 +48,7 @@ test('ghFile requests and recieves file data', (t) => {
           t.equal(config.repoName, 'test-user-name/test-repo', 'corrent data received');
           t.end();
         }
-      })
+      });
     }
   });
 });
@@ -68,5 +68,5 @@ test('ghUser responds with correct error on 404', (t) => {
       );
       t.end();
     }
-  })
+  });
 });

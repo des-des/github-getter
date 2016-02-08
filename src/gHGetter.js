@@ -1,26 +1,21 @@
 import makeGHRequest from './gHRequest.js';
-import httpsRequest from './httpsRequest.js'
+import httpsRequest from './httpsRequest.js';
 
-export const gHUser = (name, isOrg) => config => {
-  const requestPath = `/${isOrg ? `orgs` : `users`}/${name}/repos`;
-  if (config.getRepos) {
-    makeGHRequest(requestPath, (err, repoDataArr) => {
+export const gHFile = (repoName, filePath) => config => {
+  if (config.getData) {
+    makeGHRequest(`/repos/${repoName}/contents/${filePath}`, (err, file) => {
       if (err) {
-        config.getRepos(`getting repos failed with err ${err}`);
+        config.getData(`getting file failed with error: ${err}`);
       } else {
-        config.getRepos(null, repoDataArr.reduce((repos, repoData) => {
-          const repoName = repoData.full_name;
-          repos[repoName.split('/')[1]] = gHRepo(repoName);
-          return repos;
-        }, {}))
+        config.getData(null, new Buffer(file.content, 'base64').toString());
       }
-    });
+	  });
   }
   if (config.getConfig) {
     config.getConfig({
-      name: name,
-      isOrg: isOrg
-    })
+      repoName: repoName,
+      filePath: filePath
+    });
   }
 };
 
@@ -60,20 +55,25 @@ const getTree = (name, cb) => {
   });
 };
 
-export const gHFile = (repoName, filePath) => config => {
-  if (config.getData) {
-    makeGHRequest(`/repos/${repoName}/contents/${filePath}`, (err, file) => {
+export const gHUser = (name, isOrg) => config => {
+  const requestPath = `/${isOrg ? `orgs` : `users`}/${name}/repos`;
+  if (config.getRepos) {
+    makeGHRequest(requestPath, (err, repoDataArr) => {
       if (err) {
-        config.getData(`getting file failed with error: ${err}`);
+        config.getRepos(`getting repos failed with err ${err}`);
       } else {
-        config.getData(null, new Buffer(file.content, 'base64').toString());
+        config.getRepos(null, repoDataArr.reduce((repos, repoData) => {
+          const repoName = repoData.full_name;
+          repos[repoName.split('/')[1]] = gHRepo(repoName);
+          return repos;
+        }, {}));
       }
-	  });
+    });
   }
   if (config.getConfig) {
     config.getConfig({
-      repoName: repoName,
-      filePath: filePath
+      name: name,
+      isOrg: isOrg
     });
   }
 };
