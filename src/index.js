@@ -1,4 +1,4 @@
-import { gHUser, gHRepo } from './gHGetter.js'
+import { gHUser, gHRepo } from './gHGetter.js';
 
 gHUser('des-des')({
   getRepos: (err, repos) => Object.keys(repos).forEach(key => repos[key]({
@@ -10,11 +10,11 @@ gHUser('des-des')({
 
 gHUser('dwyl', true)({
   getRepos: (err, repos) => {
-    repos['adoro']({
+    repos.adoro({
       getReadme: (err, readme) => readme({
         getData: console.log
       })
-    })
+    });
   }
 });
 
@@ -22,7 +22,7 @@ gHRepo('des-des/aibox')({
   getFiles: (err, files) => {
     files['.babelrc']({
       getData: (err, fileData) => console.log(fileData)
-    })
+    });
   },
   getReadme: (err, readme) => readme({
     getData: console.log

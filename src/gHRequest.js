@@ -1,7 +1,7 @@
 import https from 'https';
 import url from 'url';
 
-import httpsRequest from './httpsRequest.js'
+import httpsRequest from './httpsRequest.js';
 
 require('env2')('./config.env');
 

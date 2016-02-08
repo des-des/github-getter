@@ -12,8 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "env2": "^2.0.4",
-    "hapi": "^13.0.0"
+    "env2": "^2.0.4"
   },
   "devDependencies": {
     "babel-cli": "^6.5.0",

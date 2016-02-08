@@ -6,7 +6,7 @@ const httpsRequest = (path, cb) => {
       cb(err, body);
     });
   });
-  request.on('error', console.warn)
+  request.on('error', console.warn);
   request.end();
 };
 
