@@ -3,7 +3,7 @@ var nock = require('nock');
 
 var nocks = require('./nocks');
 
-var gHFile = require('../lib/gHGetter.js').gHFile;
+var gHFile = require('../src/gHGetter.js').gHFile;
 
 test('ghFile requests and recieves file data', (t) => {
   var testData = 'test data';
