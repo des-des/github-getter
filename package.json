@@ -3,6 +3,10 @@
   "version": "1.0.4",
   "description": "Quick and easy github file retrieval",
   "main": "lib/gHGetter.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/des-des/github-getter.git"
+  },
   "keywords": [
     "Github",
     "CMS"
