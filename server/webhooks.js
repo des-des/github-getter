@@ -14,6 +14,7 @@ server.route({
     console.log('post');
     console.log(request.params);
     console.log(request.payload);
+    console.log('end');
     reply('yo');
   }
 });
