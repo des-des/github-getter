@@ -1,1 +1,1 @@
-web: node lib/webhooks.js
+web: node server/webhooks.js
