@@ -1,15 +1,25 @@
 {
   "name": "github-getter",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "1.0.5",
+  "description": "Quick and easy github file retrieval",
+  "main": "lib/gHGetter.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/des-des/github-getter.git"
+  },
+  "keywords": [
+    "Github",
+    "CMS"
+  ],
   "scripts": {
     "test": "babel-node ./node_modules/.bin/babel-istanbul cover tape test/ && npm run coverage",
     "coverage": "istanbul check-coverage --statements 100 --functions 100 --lines 100 --branches -100",
+    "prepublish": "npm run build",
     "build": "babel src -d lib",
     "build:watch": "babel src -d lib -w"
   },
-  "author": "",
+  "author": "Eoin McCarthy",
+  "homepage": "https://github.com/des-des/github-getter",
   "license": "ISC",
   "dependencies": {
     "env2": "^2.0.4"

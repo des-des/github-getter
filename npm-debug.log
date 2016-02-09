@@ -1,0 +1,110 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node', '/usr/bin/npm', 'publish' ]
+2 info using npm@3.7.1
+3 info using node@v4.0.0
+4 verbose publish [ '.' ]
+5 silly cache add args [ '.', null ]
+6 verbose cache add spec .
+7 silly cache add parsed spec Result {
+7 silly cache add   raw: '.',
+7 silly cache add   scope: null,
+7 silly cache add   name: null,
+7 silly cache add   rawSpec: '.',
+7 silly cache add   spec: '/home/eoin/pets/github-getter',
+7 silly cache add   type: 'directory' }
+8 verbose addLocalDirectory /home/eoin/.npm/github-getter/1.0.1/package.tgz not in flight; packing
+9 verbose correctMkdir /home/eoin/.npm correctMkdir not in flight; initializing
+10 info lifecycle github-getter@1.0.1~prepublish: github-getter@1.0.1
+11 verbose lifecycle github-getter@1.0.1~prepublish: unsafe-perm in lifecycle true
+12 verbose lifecycle github-getter@1.0.1~prepublish: PATH: /usr/lib/node_modules/npm/bin/node-gyp-bin:/home/eoin/pets/github-getter/node_modules/.bin:/usr/local/bin:/usr/local/heroku/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/jvm/default-java/bin
+13 verbose lifecycle github-getter@1.0.1~prepublish: CWD: /home/eoin/pets/github-getter
+14 silly lifecycle github-getter@1.0.1~prepublish: Args: [ '-c', 'npm run build' ]
+15 silly lifecycle github-getter@1.0.1~prepublish: Returned: code: 0  signal: null
+16 verbose tar pack [ '/home/eoin/.npm/github-getter/1.0.1/package.tgz',
+16 verbose tar pack   '/home/eoin/pets/github-getter' ]
+17 verbose tarball /home/eoin/.npm/github-getter/1.0.1/package.tgz
+18 verbose folder /home/eoin/pets/github-getter
+19 verbose addLocalTarball adding from inside cache /home/eoin/.npm/github-getter/1.0.1/package.tgz
+20 verbose correctMkdir /home/eoin/.npm correctMkdir not in flight; initializing
+21 silly cache afterAdd github-getter@1.0.1
+22 verbose afterAdd /home/eoin/.npm/github-getter/1.0.1/package/package.json not in flight; writing
+23 verbose correctMkdir /home/eoin/.npm correctMkdir not in flight; initializing
+24 verbose afterAdd /home/eoin/.npm/github-getter/1.0.1/package/package.json written
+25 silly publish { name: 'github-getter',
+25 silly publish   version: '1.0.1',
+25 silly publish   description: 'Quick and easy github file retrieval',
+25 silly publish   main: 'lib/gHGetter.js',
+25 silly publish   keywords: [ 'Github', 'CMS' ],
+25 silly publish   scripts:
+25 silly publish    { test: 'babel-node ./node_modules/.bin/babel-istanbul cover tape test/ && npm run coverage',
+25 silly publish      coverage: 'istanbul check-coverage --statements 100 --functions 100 --lines 100 --branches -100',
+25 silly publish      prepublish: 'npm run build',
+25 silly publish      build: 'babel src -d lib',
+25 silly publish      'build:watch': 'babel src -d lib -w' },
+25 silly publish   author: { name: 'Eoin McCarthy' },
+25 silly publish   homepage: 'https://github.com/des-des/github-getter',
+25 silly publish   license: 'ISC',
+25 silly publish   dependencies: { env2: '^2.0.4' },
+25 silly publish   devDependencies:
+25 silly publish    { 'babel-cli': '^6.5.0',
+25 silly publish      'babel-istanbul': '^0.6.0',
+25 silly publish      'babel-preset-es2015': '^6.3.13',
+25 silly publish      istanbul: '^0.4.2',
+25 silly publish      nock: '^7.0.2',
+25 silly publish      tape: '^4.4.0' },
+25 silly publish   readme: '[![codecov.io](https://codecov.io/github/des-des/github-getter/coverage.svg?branch=master)](https://codecov.io/github/des-des/github-getter?branch=master) [![bitHound Overall Score](https://www.bithound.io/github/des-des/github-getter/badges/score.svg)](https://www.bithound.io/github/des-des/github-getter) [![bitHound Dependencies](https://www.bithound.io/github/des-des/github-getter/badges/dependencies.svg)](https://www.bithound.io/github/des-des/github-getter/master/dependencies/npm) [![bitHound Dev Dependencies](https://www.bithound.io/github/des-des/github-getter/badges/devDependencies.svg)](https://www.bithound.io/github/des-des/github-getter/master/dependencies/npm)\n\n**webhooks coming soon (so you gh hosted content can tell you site when to update!)**\n\n# github-getter\n\n## What?\n\nA quick and easy way to get files from github\n\n## Why?\n\nHosting content on github is awesome! github-getter makes accessing those files easy (so you don\'t waste your precious time reading api docs!)\n\n## How?\n\nBreak down interaction with github into users, repos and files.\n\n### SETUP\n\n * `import { GHFile, GHRepo, GHUser } from \'github-getter\'`\n\n * `GHFile` Input a filepath and repo name to get and `GHFile` object OR\n * `GHRepo`: Input a repo name to get a `GHFile` object for everything in the repo OR\n * `GHUser`: Input a user/org name and get a `GHRepo` object for each repository belonging to that user/org\n \n### USAGE\n\n * call your `GHFile` object(s) with the following paramiter\n \n ```javascript\n {\n  getData: fileDataString => /*Your code here!*/\n }\n ```\n see src/index.es6 for an example!\n \n \n',
+25 silly publish   readmeFilename: 'README.md',
+25 silly publish   gitHead: '2454628e6415e1a7f6c39a110daa49ca9af84e72',
+25 silly publish   _id: 'github-getter@1.0.1',
+25 silly publish   _shasum: '68dfa9e17e4f51cf51ddd4aeb5d9fa2f002d4162',
+25 silly publish   _from: '.' }
+26 verbose getPublishConfig undefined
+27 silly mapToRegistry name github-getter
+28 silly mapToRegistry using default registry
+29 silly mapToRegistry registry https://registry.npmjs.org/
+30 silly mapToRegistry uri https://registry.npmjs.org/github-getter
+31 verbose publish registryBase https://registry.npmjs.org/
+32 silly publish uploading /home/eoin/.npm/github-getter/1.0.1/package.tgz
+33 verbose request uri https://registry.npmjs.org/github-getter
+34 verbose request sending authorization for write operation
+35 info attempt registry request try #1 at 10:51:42 PM
+36 verbose request using bearer token for auth
+37 verbose request id cd526e7ece960377
+38 http request PUT https://registry.npmjs.org/github-getter
+39 http 403 https://registry.npmjs.org/github-getter
+40 verbose headers { 'content-type': 'application/json',
+40 verbose headers   'cache-control': 'max-age=300',
+40 verbose headers   'content-length': '95',
+40 verbose headers   'accept-ranges': 'bytes',
+40 verbose headers   date: 'Mon, 08 Feb 2016 22:51:43 GMT',
+40 verbose headers   via: '1.1 varnish',
+40 verbose headers   connection: 'keep-alive',
+40 verbose headers   'x-served-by': 'cache-lhr6331-LHR',
+40 verbose headers   'x-cache': 'MISS',
+40 verbose headers   'x-cache-hits': '0',
+40 verbose headers   'x-timer': 'S1454971902.414685,VS0,VE928' }
+41 verbose request invalidating /home/eoin/.npm/registry.npmjs.org/github-getter on PUT
+42 error publish Failed PUT 403
+43 verbose stack Error: "You cannot publish over the previously published version 1.0.1." : github-getter
+43 verbose stack     at makeError (/usr/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:264:12)
+43 verbose stack     at CachingRegistryClient.<anonymous> (/usr/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:252:14)
+43 verbose stack     at Request._callback (/usr/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:172:14)
+43 verbose stack     at Request.self.callback (/usr/lib/node_modules/npm/node_modules/request/request.js:199:22)
+43 verbose stack     at emitTwo (events.js:87:13)
+43 verbose stack     at Request.emit (events.js:172:7)
+43 verbose stack     at Request.<anonymous> (/usr/lib/node_modules/npm/node_modules/request/request.js:1036:10)
+43 verbose stack     at emitOne (events.js:82:20)
+43 verbose stack     at Request.emit (events.js:169:7)
+43 verbose stack     at IncomingMessage.<anonymous> (/usr/lib/node_modules/npm/node_modules/request/request.js:963:12)
+44 verbose statusCode 403
+45 verbose pkgid github-getter
+46 verbose cwd /home/eoin/pets/github-getter
+47 error Linux 3.19.0-43-generic
+48 error argv "/usr/local/bin/node" "/usr/bin/npm" "publish"
+49 error node v4.0.0
+50 error npm  v3.7.1
+51 error code E403
+52 error "You cannot publish over the previously published version 1.0.1." : github-getter
+53 error If you need help, you may report this error at:
+53 error     <https://github.com/npm/npm/issues>
+54 verbose exit [ 1, true ]
