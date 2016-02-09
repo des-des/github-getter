@@ -26,6 +26,14 @@ Break down interaction with github into users, repos and files.
  
 ### USAGE
 
+ 1. navigate to `https://github.com/settings/tokens`
+ 2. click this button to create new token
+![image](https://cloud.githubusercontent.com/assets/12845233/12928897/04595204-cf68-11e5-8a4a-d41f5eca6a97.png)
+ 3. create a file called `config.env` in your projects root
+ 4. add the line `ghtoken=****************` to the file, adding you token.
+ 5. run the command `npm i github-getter --save`
+ 6. get coding!
+
 
  ```javascript
 import { gHUser, gHRepo } from 'github-getter.js';
@@ -36,6 +44,7 @@ gHUser('dwyl', true)({
     repos.adoro({ // my favorate dwyl repo ;)
       getReadme: (err, readme) => readme({
         getData: console.log
+        // logs the file from https://github.com/dwyl/adoro/blob/master/README.md to the console
       })
     });
   }
@@ -44,14 +53,16 @@ gHUser('dwyl', true)({
 gHRepo('des-des/aibox')({
   getFiles: (err, files) => {
     files['.babelrc']({
-      getData: (err, fileData) => console.log(fileData)
+      getData: console.log 
+      // logs the file from https://github.com/des-des/aibox/blob/master/.babelrc to the console
     });
   },
   getReadme: (err, readme) => readme({
     getData: console.log
+    // logs the file from https://github.com/des-des/aibox/blob/master/README.md to the console
   })
 });
  ```
- see src/index.es6 for an example!
+ see src/index.es6 for the example!
  
  
