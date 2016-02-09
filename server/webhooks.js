@@ -9,20 +9,11 @@ server.connection({ port: port });
 
 server.route({
   method: 'POST',
-  path: '/{param*}',
+  path: '/webhook',
   handler: (request, reply) => {
     console.log('post');
     console.log(request.params);
-    reply('yo');
-  }
-});
-
-server.route({
-  method: 'GET',
-  path: '/{param*}',
-  handler: (request, reply) => {
-    console.log('get');
-    console.log(request.params);
+    console.log(request.payload);
     reply('yo');
   }
 });
