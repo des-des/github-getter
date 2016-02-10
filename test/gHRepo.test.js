@@ -6,7 +6,7 @@ var nocks = require('./nocks');
 var gHRepo = require('../src/gHGetter.js').gHRepo;
 
 test('retrieving commit then tree then file', (t) => {
-  var expected;
+  var actual, expected;
   var repoName = 'test-repo';
   var filePath = 'test-path';
   var sha = 'test-sha';
@@ -16,31 +16,32 @@ test('retrieving commit then tree then file', (t) => {
 
   gHRepo(repoName)({
     getFiles: (err, fileData) => {
-      fileData[filePath]({
-        getConfig: config => {
-          t.equal(config.filePath, filePath, 'correct file path');
-          t.equal(config.repoName, repoName, 'correct repo name');
-          t.end();
-        }
-      });
+      expected = [repoName, filePath];
+      actual = fileData[filePath].initParams;
+      t.deepEqual(actual, expected, 'returned file has correct repo and path');
+      t.end();
     }
   });
 });
 
 test('retrieving commit then checking response fails correctly for tree', (t) => {
-  var expected;
+  var actual, expected;
   var repoName = 'test-repo';
   var testData = 'test-data';
 
   gHRepo(repoName)({
     getReadme: (err, readme) => {
-      readme({
-        getConfig: config => {
-          t.equal(config.filePath, 'README.md', 'correct file path');
-          t.equal(config.repoName, repoName, 'correct repo name');
-          t.end();
-        }
-      });
+      // readme({
+        expected = [repoName, 'README.md'];
+        actual = readme.initParams;
+        t.deepEqual(actual, expected, 'returned file has correct repo and path');
+        t.end();
+        // getConfig: config => {
+        //   t.equal(config.filePath, 'README.md', 'correct file path');
+        //   t.equal(config.repoName, repoName, 'correct repo name');
+        //   t.end();
+        // }
+      // });
     }
   });
 });
