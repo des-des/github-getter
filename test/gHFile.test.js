@@ -32,7 +32,7 @@ test('ghFile requests handles bad file path', (t) => {
 
   gHFile(repoName, fileName)({
     getData: (err, fileData) => {
-      expected = 'getting file failed with error: status code not 200';
+      expected = 'status code not 200';
       t.equal(err, expected, 'corrent data received');
       t.end();
     }

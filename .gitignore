@@ -5,3 +5,5 @@ lib
 *.env
 
 coverage
+
+npm-debug.log
