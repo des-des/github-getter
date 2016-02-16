@@ -25,11 +25,11 @@ const gHGetter = (makeRequest, getterConfigMap) => (...initParams) => {
           }
         }
       });
-    }
+    };
     if (hasResponse) {
-      configFuncCaller(err_, response_)
+      configFuncCaller(err_, response_);
     }
-  }
+  };
   gHGetter.initParams = initParams;
   return gHGetter;
 };

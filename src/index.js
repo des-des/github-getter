@@ -4,7 +4,7 @@ import { gHUser, gHRepo, gHFile } from './gHGetter.js';
 // githubFile: get its data
 gHFile('des-des/github-getter', 'README.md')({
   getData:  (err, readmeData) => console.log(readmeData)
-})
+});
 
 // githubRepo: get a githubFile for every file in a repo (or just the readme)
 gHRepo('des-des/github-getter')({
@@ -27,8 +27,8 @@ gHUser('des-des')({
       if (!err) {
         readme({
           getData: (err, readmeData) => console.log(readmeData)
-        })
+        });
       }
     }
   })
-})
+});

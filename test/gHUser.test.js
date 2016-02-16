@@ -17,7 +17,7 @@ test('ghUser requests and recieves file data', (t) => {
       t.ok(!err, 'no error passed');
       actual   = repoData[repoName].initParams[0];
       expected = repoName;
-      t.equal(actual, expected, 'correct params')
+      t.equal(actual, expected, 'correct params');
       t.end();
     }
   });
@@ -35,7 +35,7 @@ test('ghUser requests and recieves file data for org', (t) => {
       t.ok(!err, 'no error passed');
       actual   = repoData[repoName].initParams[0];
       expected = repoName;
-      t.equal(actual, expected, 'correct params')
+      t.equal(actual, expected, 'correct params');
       t.end();
     }
   });

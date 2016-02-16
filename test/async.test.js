@@ -11,7 +11,7 @@ test('testing async behavior of getters', (t) => {
 
   nocks.nockFileRequest(repoName, fileName, 200, testData);
 
-  var fileHandle = gHFile(repoName, fileName)
+  var fileHandle = gHFile(repoName, fileName);
   setTimeout(() => fileHandle({
     getData: (err, fileData) => {
       t.ok(!err, 'no error passed');
