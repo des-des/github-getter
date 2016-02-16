@@ -23,13 +23,12 @@ gHRepo('des-des/github-getter')({
 // githubUser: get a githubRepo for every repo belonging to a user or org
 gHUser('des-des')({
   getRepos: (err, repos) => repos['github-getter']({
-      getReadme: (err, readme) => {
-        if (!err) {
-          readme({
-            getData: (err, readmeData) => console.log(readmeData)
-          })
-        }
+    getReadme: (err, readme) => {
+      if (!err) {
+        readme({
+          getData: (err, readmeData) => console.log(readmeData)
+        })
       }
-    })
+    }
   })
-});
+})

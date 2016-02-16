@@ -28,6 +28,10 @@ test('retrieving commit then checking response fails correctly for tree', (t) =>
   var actual, expected;
   var repoName = 'test-repo';
   var testData = 'test-data';
+  var sha      = 'test-sha';
+
+  nocks.nockCommitRequest(repoName, sha, 200);
+  nocks.nockTreeRequest(repoName, sha, 'README.md', 200);
 
   gHRepo(repoName)({
     getReadme: (err, readme) => {
@@ -36,12 +40,6 @@ test('retrieving commit then checking response fails correctly for tree', (t) =>
         actual = readme.initParams;
         t.deepEqual(actual, expected, 'returned file has correct repo and path');
         t.end();
-        // getConfig: config => {
-        //   t.equal(config.filePath, 'README.md', 'correct file path');
-        //   t.equal(config.repoName, repoName, 'correct repo name');
-        //   t.end();
-        // }
-      // });
     }
   });
 });
@@ -57,14 +55,14 @@ test('retrieving commit then checking response fails correctly for tree', (t) =>
 
   gHRepo(repoName)({
     getFiles: (err, fileData) => {
-      expected = 'getting tree failed with err status code not 200';
+      expected = 'status code not 200';
       t.equal(err, expected, 'correct error passed');
       t.end();
     }
   });
 });
 
-test('retrieving commit then checking response fails correctly for tree', (t) => {
+test('checking response fails correctly for commit', (t) => {
   var expected;
   var repoName = 'test-repo';
   var sha = 'test-sha';
@@ -73,7 +71,7 @@ test('retrieving commit then checking response fails correctly for tree', (t) =>
 
   gHRepo(repoName)({
     getFiles: (err, fileData) => {
-      expected = 'getting latest commit failed with err status code not 200';
+      expected = 'status code not 200';
       t.equal(err, expected, 'correct error passed');
       t.end();
     }

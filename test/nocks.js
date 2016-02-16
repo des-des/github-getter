@@ -9,6 +9,7 @@ var nockFileRequest = (repoName, fileName, responseCode, responseData) => {
 };
 
 var nockCommitRequest = (repoName, sha, statusCode) => {
+  console.log('nocking commit request');
   nock('https://api.github.com')
     .get('/repos/' +  repoName + '/commits')
     .reply(statusCode, [{
