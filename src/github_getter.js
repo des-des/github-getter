@@ -59,7 +59,7 @@ const githubGetter = token => {
 
   const org = getter([orgUrl, gHUser])
 
-  return { file, file, repo, user, org }
+  return { file, repo, user, org }
 }
 
 module.exports = { githubGetter, waterfallRequester, setCb }

@@ -20,7 +20,6 @@ const httpsRequest = (options, cb) => {
   const request = https.request(options, (response) => {
     getPayload(response, (err, res) => {
       if (err) {
-        const { statusCode, paylaod } = err
         cb(new Error(errMessage(err, options.path)))
       } else cb(null, res)
     })

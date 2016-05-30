@@ -4,7 +4,7 @@ const {
   nockFileRequest, nockCommitRequest, nockTreeRequest, nockUserRequest
 } = require('./nocks')
 const { file, repo, user, org } = require('../src/')('token')
-const { waterfallRequester, setCb } = require('../src/github_getter.js')
+const { setCb } = require('../src/github_getter.js')
 
 test('util', t => {
   t.plan(1)
@@ -21,7 +21,7 @@ test('error test', t => {
 
   nockFileRequest(repoName, filePath, 400, testData)
 
-  file({ repoName, filePath }, (err, file) => {
+  file({ repoName, filePath }, (err) => {
     t.ok(err, 'error passed')
 
     t.end()
