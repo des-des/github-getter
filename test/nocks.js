@@ -10,7 +10,7 @@ var nockFileRequest = (repoName, fileName, responseCode, responseData) => {
 
 var nockCommitRequest = (repoName, sha, statusCode) => {
   nock('https://api.github.com')
-    .get('/repos/' +  repoName + '/commits')
+    .get('/repos/' + repoName + '/commits')
     .reply(statusCode, [{
       sha: sha
     }])
@@ -18,7 +18,7 @@ var nockCommitRequest = (repoName, sha, statusCode) => {
 
 var nockTreeRequest = (repoName, sha, path, statusCode) => {
   nock('https://api.github.com')
-    .get('/repos/' +  repoName + '/git/trees/' + sha + '?recursive=1')
+    .get('/repos/' + repoName + '/git/trees/' + sha + '?recursive=1')
     .reply(statusCode, {
       tree: [{ type: 'blob', path }, { type: 'notablob', path }]
     })

@@ -83,6 +83,7 @@ test('org', (t) => {
   nockUserRequest(name, false, repoName, 200)
 
   org(({ name }), (err, res) => {
+    t.ok(!err, 'no error')
     const expected = [repoName]
     const actual = Object.keys(res)
     t.deepEqual(actual, expected, 'correct repo name in return object')

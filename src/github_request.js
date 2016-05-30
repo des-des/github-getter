@@ -1,9 +1,8 @@
 const https = require('https')
-const url = require('url')
 
 const getPayload = (response, cb) => {
   let data = ''
-  response.on('data', chunk => data += chunk)
+  response.on('data', chunk => { data += chunk })
   response.on('end', () => {
     const { statusCode } = response
     const payload = JSON.parse(data)
@@ -36,7 +35,7 @@ const requestOptions = (token, path) => ({
   headers: {
     'User-Agent': 'Mozilla/5.0 (Macintosh Intel Mac OS X 10.8 rv:24.0)' +
       ' Gecko/20100101 Firefox/24.0',
-    'Authorization': 'token '+ token
+    'Authorization': 'token ' + token
   }
 })
 
