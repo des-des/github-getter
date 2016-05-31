@@ -1,5 +1,6 @@
+[![codecov.io](https://codecov.io/github/des-des/github-getter/coverage.svg?branch=master)](https://codecov.io/github/des-des/github-getter?branch=master)
 [![travis-ci.org](https://travis-ci.org/des-des/github-getter.svg?branch=master)](https://travis-ci.org/des-des/github-getter.svg?branch=master)
-[![codecov.io](https://codecov.io/github/des-des/github-getter/coverage.svg?branch=master)](https://codecov.io/github/des-des/github-getter?branch=master) [![bitHound Overall Score](https://www.bithound.io/github/des-des/github-getter/badges/score.svg)](https://www.bithound.io/github/des-des/github-getter) [![bitHound Dependencies](https://www.bithound.io/github/des-des/github-getter/badges/dependencies.svg)](https://www.bithound.io/github/des-des/github-getter/master/dependencies/npm) [![bitHound Dev Dependencies](https://www.bithound.io/github/des-des/github-getter/badges/devDependencies.svg)](https://www.bithound.io/github/des-des/github-getter/master/dependencies/npm) 
+[![codecov.io](https://codecov.io/github/des-des/github-getter/coverage.svg?branch=master)](https://codecov.io/github/des-des/github-getter?branch=master)
 
 **webhooks coming soon (so you gh hosted content can tell you site when to update!)**
 
@@ -7,63 +8,64 @@
 
 ## What?
 
-A quick and easy way to get files from github
+#### A quick and easy way to get files from github
+
+github-getter is a small module to take the hassle out of downloading files from github. Download specific files, or specify repositories/users and recieve lists of files/repositories available.
 
 ## Why?
 
-Hosting content on github is awesome! github-getter makes accessing those files easy (so you don't waste your precious time reading api docs!)
+Save time digging around docs / fiddling with with headers.
 
 ## How?
 
-Break down interaction with github into users, repos and files.
+get a github api token. Create a personal one [here](https://github.com/settings/tokens) or use [oauth](https://github.com/settings/tokens).
 
-### SETUP
+#### node 6
+```js
+const { user, repo, file } = require('./src/')(process.env.ghtoken)
 
- * `import { GHFile, GHRepo, GHUser } from 'github-getter'`
+const logContent = (err, res) => {
+  if (err) throw err
+  console.log(res.content)
+}
 
- * `GHFile` Input a filepath and repo name to get and `GHFile` object OR
- * `GHRepo`: Input a repo name to get a `GHFile` object for everything in the repo OR
- * `GHUser`: Input a user/org name and get a `GHRepo` object for each repository belonging to that user/org
- 
-### USAGE
+file({ repoName: 'des-des/github-getter', filePath: 'README.md' }, logContent)
 
- 1. navigate to `https://github.com/settings/tokens`
- 2. click this button to create new token
-![image](https://cloud.githubusercontent.com/assets/12845233/12928897/04595204-cf68-11e5-8a4a-d41f5eca6a97.png)
- 3. create a file called `config.env` in your projects root
- 4. add the line `ghtoken=****************` to the file, adding you token.
- 5. run the command `npm i github-getter --save`
- 6. get coding!
+repo({ repoName: 'des-des/github-getter' }, (err, githubGetter) => {
+  if (err) throw err
+  githubGetter['README.md'](logContent)
+})
 
-
- ```javascript
-import { gHUser, gHRepo } from 'github-getter.js';
-
-
-gHUser('dwyl', true)({
-  getRepos: (err, repos) => {
-    repos.adoro({ // my favorate dwyl repo ;)
-      getReadme: (err, readme) => readme({
-        getData: console.log
-        // logs the file from https://github.com/dwyl/adoro/blob/master/README.md to the console
-      })
-    });
-  }
-});
-
-gHRepo('des-des/aibox')({
-  getFiles: (err, files) => {
-    files['.babelrc']({
-      getData: console.log 
-      // logs the file from https://github.com/des-des/aibox/blob/master/.babelrc to the console
-    });
-  },
-  getReadme: (err, readme) => readme({
-    getData: console.log
-    // logs the file from https://github.com/des-des/aibox/blob/master/README.md to the console
+user({ name: 'des-des' }, (err, desdes) => {
+  if (err) throw err
+  desdes['github-getter']((err, githubGetter) => {
+    if (err) throw err
+    githubGetter['README.md'](logContent)
   })
-});
- ```
- see src/index.es6 for the example!
- 
- 
+})
+```
+
+## Documentation
+
+  * `init` - `token => githubGetter`, where
+    * `token` - github api token.
+  * `githubGetter` - object with
+    * `file` - `({ repoName, filePath }, cb) => {}`, where
+      * `repoName` - name of the repository,
+      * `filePath` - path of desired file, ie `assets/someData.json`,
+      * `cb` - `(err, githubFile) => {}`.
+    * `repo` - `({ repoName }, cb) => {}`, where
+      * `repoName` - name of the repository,
+      * `cb` - `(err, githubRepo) => {}`.
+    * `user` - `({ name }, cb) => {}`, where
+      * `name` - github user name,
+      * `cb` - `(err, githubUser) => {}`.
+    * `org` - `({ name }, cb) => {}`, where
+      * `name` - github org name,
+      * `cb` - `(err, githubUser) => {}`.
+  * `githubFile` - object containing
+    * `content` - string containing file content
+  * githubRepo - an object were keys are paths to repos files:
+    * `[filepath]` - `cb(err, githubFile) => {}`.
+  * githubUser - an object were keys are repo names belonging to the user/org:
+    * `[repoName]` - `cb(err, githubRepo) => {}`.
