@@ -1,4 +1,7 @@
 [![codecov.io](https://codecov.io/github/des-des/github-getter/coverage.svg?branch=master)](https://codecov.io/github/des-des/github-getter?branch=master)
+[![travis-ci.org](https://travis-ci.org/des-des/github-getter.svg?branch=master)](https://travis-ci.org/des-des/github-getter.svg?branch=master)
+[![codecov.io](https://codecov.io/github/des-des/github-getter/coverage.svg?branch=master)](https://codecov.io/github/des-des/github-getter?branch=master)
+
 **webhooks coming soon (so you gh hosted content can tell you site when to update!)**
 
 # github-getter
