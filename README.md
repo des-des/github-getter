@@ -1,5 +1,4 @@
-[![codecov.io](https://codecov.io/github/des-des/github-getter/coverage.svg?branch=master)](https://codecov.io/github/des-des/github-getter?branch=master) [![bitHound Overall Score](https://www.bithound.io/github/des-des/github-getter/badges/score.svg)](https://www.bithound.io/github/des-des/github-getter) [![bitHound Dependencies](https://www.bithound.io/github/des-des/github-getter/badges/dependencies.svg)](https://www.bithound.io/github/des-des/github-getter/master/dependencies/npm) [![bitHound Dev Dependencies](https://www.bithound.io/github/des-des/github-getter/badges/devDependencies.svg)](https://www.bithound.io/github/des-des/github-getter/master/dependencies/npm)
-
+[![codecov.io](https://codecov.io/github/des-des/github-getter/coverage.svg?branch=master)](https://codecov.io/github/des-des/github-getter?branch=master)
 **webhooks coming soon (so you gh hosted content can tell you site when to update!)**
 
 # github-getter
