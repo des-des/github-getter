@@ -1,8 +1,8 @@
 {
   "name": "github-getter",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Quick and easy github file retrieval",
-  "main": "lib/gHGetter.js",
+  "main": "lib/",
   "repository": {
     "type": "git",
     "url": "https://github.com/des-des/github-getter.git"
