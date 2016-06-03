@@ -1,33 +1,27 @@
-var nock = require('nock')
+const nock = require('nock')
 
-var nockFileRequest = (repoName, fileName, responseCode, responseData) => {
+const nockFileRequest = (repoName, responseData, sha) => {
   nock('https://api.github.com')
-    .get('/repos/' + repoName + '/contents/' + fileName)
-    .reply(responseCode, typeof responseData !== 'undefined' ? {
-      content: new Buffer(responseData).toString('base64')
-    } : '')
+    .get(`/repos/${repoName}/git/blobs/${sha}`)
+    .reply(200, { content: new Buffer(responseData).toString('base64') })
 }
 
-var nockCommitRequest = (repoName, sha, statusCode) => {
+const nockCommitRequest = (repoName, sha) => {
   nock('https://api.github.com')
     .get('/repos/' + repoName + '/commits')
-    .reply(statusCode, [{
-      sha: sha
-    }])
+    .reply(200, [{ sha }])
 }
 
-var nockTreeRequest = (repoName, sha, path, statusCode) => {
+const nockTreeRequest = (repoName, rootSha, treeElem) => {
   nock('https://api.github.com')
-    .get('/repos/' + repoName + '/git/trees/' + sha + '?recursive=1')
-    .reply(statusCode, {
-      tree: [{ type: 'blob', path }, { type: 'notablob', path }]
-    })
+    .get(`/repos/${repoName}/git/trees/${rootSha}?recursive=1`)
+    .reply(200, { tree: [treeElem, { type: 'notablob' }] })
 }
 
-var nockUserRequest = (name, isOrg, repoName, statusCode) => {
+const nockUserRequest = (name, isOrg, repoName) => {
   nock('https://api.github.com')
-    .get('/' + (isOrg ? 'orgs' : 'users') + '/' + name + '/repos')
-    .reply(statusCode, [{ full_name: name + '/' + repoName }])
+    .get(`/${(isOrg ? 'orgs' : 'users')}/${name}/repos`)
+    .reply(200, [{ full_name: `${name}/${repoName}` }])
 }
 
 module.exports = {

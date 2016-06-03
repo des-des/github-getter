@@ -1,7 +1,13 @@
 const makeGHRequest = require('./github_request.js')
 
-const fileUrl = ({ repoName, filePath }) =>
+const fileDataUrl = ({ repoName, filePath }) =>
   `/repos/${repoName}/contents/${filePath}`
+
+const sha = path => treeData =>
+  treeData.tree.filter(node => node.path === path)[0].sha
+
+const fileUrl = ({ repoName, filePath }, treeData) =>
+  `/repos/${repoName}/git/blobs/${sha(filePath)(treeData)}`
 
 const commitsUrl = ({ repoName }) =>
   `/repos/${repoName}/commits`
@@ -29,19 +35,27 @@ const waterfallRequester = token => res => ([processRes, ...rest]) =>
 const setCb = f => (...args) => cb => f(...args, cb)
 
 const githubGetter = token => {
-  const getter = waterfallRequester(token)()
+  const getterWParams = waterfallRequester(token)
+
+  const getter = getterWParams();
 
   const gHFile = (_, fileData) => ({
     content: new Buffer(fileData.content, 'base64').toString(),
     fileData
   })
 
-  const file = getter([fileUrl, gHFile])
+  const fileFromTree = data =>
+    getterWParams(data)([fileUrl, gHFile])
+
+  const file = getter([commitsUrl, repoTreeUrl, fileUrl, gHFile])
 
   const gHRepo = ({ repoName }, treeData) => {
     return treeData.tree.reduce((files, treeElem) => {
       if (treeElem.type === 'blob') {
-        files[treeElem.path] = setCb(file)({ repoName, filePath: treeElem.path })
+        files[treeElem.path] =
+          setCb
+            (fileFromTree(treeData))
+            ({ repoName, filePath: treeElem.path })
       }
       return files
     }, {})
